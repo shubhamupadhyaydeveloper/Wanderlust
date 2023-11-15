@@ -1,0 +1,31 @@
+<%- layout('layout/Boilerplate.ejs') %>
+<body>
+
+   
+    <!-- <form action="/list/new" method="get">
+        <button type="submit">New list</button>
+    </form> -->
+
+
+    <%- include('../include/hero.ejs') %>
+
+   
+  <div id="allbox">
+    <% for (let data of list) {%>
+        <a href="/list/<%= data._id %>">
+        <div class="box "  data-aos="fade-up">
+            <div class="card">
+                <img src='<%= data.image %>' alt="img" class="child"/>
+                <div class="cardtext">
+                    <h3> <%= data.title %> </h3>
+                    <p> &#8377; <%= parseInt(data.price).toLocaleString('en-IN') %>  <b>per Night</b></p>
+                </div>
+            </div>
+        </div>
+    </a>
+        <% } %>
+  </div>
+
+    
+    
+</body>

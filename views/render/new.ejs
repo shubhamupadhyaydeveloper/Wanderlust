@@ -1,0 +1,88 @@
+<%- layout('layout/Boilerplate.ejs') %>
+<body>
+    
+    <div class="containerform">
+        
+         <img src="https://img.freepik.com/free-photo/full-shot-people-traveling-concept_23-2149629599.jpg?w=996&t=st=1699075975~exp=1699076575~hmac=530b2b84d2fb36125fa62ba8593518f37be117aa40725da588661087b2e17043" alt="error">
+
+         <div class="actualform">
+            
+        <h2 class="formhead">Create a new listing</h2>
+       
+             <form action="/list" method="post" class="needs-validation" novalidate>
+                <div class="col-md-5">
+                    <label for="title" class="form-label"></label>
+                    <input type="text" name="list[title]" id="title" required class="form-control" placeholder="Title"> <br><br>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Please provide a title.
+                      </div>
+                </div>
+
+                <div class="col-md-10">
+                    <label for="description" class="form-label"></label>
+                    <textarea name="list[description]" id="description" cols="30" rows="3" required class="form-control" placeholder="Description"></textarea> <br><br>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Please provide a description.
+                      </div>
+                </div>
+
+                <div class="col-md-10">
+                    <label for="image" class="form-label"></label>
+                    <input type="text" name="list[image]" id="image" placeholder="image" required class="form-control"> <br> <br>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Please provide a valid link.
+                      </div>
+                </div>
+               
+                <div class="col-md-10">
+                    <label for="number" class="form-label"></label>
+                    <input type="number" name="list[price]" id="number" placeholder="price" required class="form-control"> <br> <br>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Please provide a valid number.
+                      </div>
+                </div>
+               
+                <div class="col-md-10">
+                    <label for="location" class="form-label"></label>
+                    <input type="text" name="list[location]" id="location" placeholder="location" required class="form-control"> <br> <br>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Please provide a valid location .
+                      </div>
+                </div>
+
+                <div class="col-md-10">
+                    <label for="country" class="form-label"></label>
+                    <input type="text" name="list[country]" id="country" placeholder="country" required class="form-control"> <br> <br>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Please provide a valid country .
+                      </div>
+                </div>
+
+             
+                 <button type="submit" class="submitbutton">Submit here</button>
+                </form
+
+            </div>
+
+
+    </div>
+</body>
+<script src="/script/validation.js"></script>

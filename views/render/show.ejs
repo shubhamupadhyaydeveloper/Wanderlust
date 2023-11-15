@@ -1,0 +1,30 @@
+<%- layout('layout/Boilerplate.ejs') %>
+<body>
+
+       
+    <div class="showcontainer">
+        <h1>Listing details</h1>
+        <img src="<%= list.image %>" alt="image">
+        <div class="showtext">
+            <h3>title : <%= list.title %></h3>
+            <h3>Description :<%= list.description %></h3>
+            <h3>price :<%= list.price.toLocaleString('en-IN') %></h3>
+            <h3>location :<%= list.location %></h3>
+            <h3>country :<%= list.country %></h3> 
+        </div>
+    </div>
+
+    <div id="show">
+
+        <form action="/list/<%= list._id %>/edit" method="get">
+           <button type="submit" class="showbutton">Edit</button>
+       </form>
+    
+       <form action="/list/<%= list._id %>?_method=DELETE %>" method="post">
+           <button type="submit" class="showbutton">Delete list</button>
+       </form>
+
+    </div>
+    
+    
+</body>

@@ -1,0 +1,63 @@
+<%- layout('layout/Boilerplate.ejs') %>
+<body>
+
+
+    <div class="containerform editform">
+
+        <form class="row g-3 needs-validation" novalidate method="post" action="/list/<%= list._id %>?_method=PUT" >
+          <div class="col-md-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" value="<%= list.title %>" required name="list[title]">
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-4.4">
+            <label for="description" class="form-label">Description</label> 
+            <textarea name="list[description]" id="" cols="30" rows="3" class="form-control" required><%= list.description %></textarea>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please choose a valid description.
+            </div>
+          </div>
+          <div class="col-md-2.2">
+            <label for="image" class="form-label">Image</label>
+            <div class="input-group has-validation">
+              <input type="text" class="form-control" id="image" aria-describedby="inputGroupPrepend" required name="list[image]" value="<%= list.image %>" required> 
+              <div class="invalid-feedback">
+                Please choose a valid link.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" required name="list[location]" value="<%= list.location %>">
+            <div class="invalid-feedback">
+              Please provide a valid location.
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label for="price" class="form-label">price</label>
+            <input type="number" class="form-control" id="price" required name="list[price]" value="<%= list.price %>">
+            <div class="invalid-feedback">
+              Please provide a valid price.
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label for="city" class="form-label">Country</label>
+            <input type="text" class="form-control" id="city" required name="list[country]" value="<%= list.country %>">
+            <div class="invalid-feedback">
+              Please provide a valid city.
+            </div>
+          </div>
+       >
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+          </div>
+        </form>
+      </div>
+</body>
+<script src="/script/validation.js"></script>
