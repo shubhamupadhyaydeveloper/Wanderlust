@@ -24,6 +24,12 @@ const Schema = new mongoose.Schema({
     type: String,
   },
   country: String,
+  review : [
+    {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : 'Review'
+    }
+  ]
 });
 
 const Listing = mongoose.model("Listing", Schema);

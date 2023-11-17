@@ -3,10 +3,9 @@
 
        
     <div class="showcontainer">
-        <h1>Listing details</h1>
+        <h1><%= list.title %></h1>
         <img src="<%= list.image %>" alt="image">
         <div class="showtext">
-            <h3>title : <%= list.title %></h3>
             <h3>Description :<%= list.description %></h3>
             <h3>price :<%= list.price.toLocaleString('en-IN') %></h3>
             <h3>location :<%= list.location %></h3>
@@ -14,17 +13,68 @@
         </div>
     </div>
 
-    <div id="show">
-
+    <div id="show" class="d-flex justify-content-start butons mt-3">
         <form action="/list/<%= list._id %>/edit" method="get">
-           <button type="submit" class="showbutton">Edit</button>
+           <button type="submit" class=" btn btn-danger">Edit</button>
        </form>
     
        <form action="/list/<%= list._id %>?_method=DELETE %>" method="post">
-           <button type="submit" class="showbutton">Delete list</button>
+           <button type="submit" class="btn btn-primary ">Delete list</button>
        </form>
+    </div>
 
+    <div class="reviews">
+        <h1>Write a Review</h1>
+      <form action="/list/<%= list._id %>/review" method="post" novalidate class="needs-validation">
+        <label for="star" class="rating">Rating</label>
+        <select name="review[star]" id="star" type="number">
+            <option value="1" type="number">1</option>
+            <option value="2" type="number">2</option>
+            <option value="3" type="number">3</option>
+            <option value="4" type="number">4</option>
+            <option value="5" type="number">5</option>
+          </select>
+
+          <div>
+              <label for="fname" class="form-label rating">Username</label>
+              <input type="text" name="review[name]"  id="fname" class="form-control" placeholder="Robert" required>
+              <div class="invalid-feedback">
+                Please provide a username.
+              </div>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+          </div>
+
+          <div>
+            <label for="ftextarea" class="form-label rating">Comment</label>
+            <textarea name="review[comment]" id="ftextarea" cols="30" rows="5" class="form-control" required></textarea >
+                <div class="invalid-feedback">
+                    Please write about place.
+                  </div>
+          </div>
+
+          <button class="btn btn-outline-primary">Submit</button>
+           
+      </form>
     </div>
     
+    <h1 class="reviewheading">All Reviews</h1>
+    <div class="showreview">
+        <% for (let value of list.review) {%>
+            <div class="reviewbox">
+                <h5>Name : <span class="reviewname"> <b><%= value.name %></b></span></h5>
+                <hr>
+                <h5>Comment : <%= value.comment %></h5>
+                <hr>
+                <h5 class="star"><span>Star</span>: <b><%= value.star %></b> </h5>
+                <form action="/list/<%= list._id %>/review/<%= value._id %>?_method=DELETE" method="post">
+                    <button class="btn btn-secondary">Delete</button>
+                </form>
+            </div>
+
+        <% } %>
+    </div>
     
 </body>
+<script src="/script/validation.js"></script>

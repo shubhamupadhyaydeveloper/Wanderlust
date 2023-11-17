@@ -306,22 +306,10 @@ footer {
   margin-top: 15vh;
 }
 
-.showbutton {
-  background-color: #04aa6d;
-  color: white;
-  padding: 1vh 1.1vh;
-}
-
-.showbutton:hover {
-  color: #04aa6d;
-  background-color: white;
-}
-
-#show {
+.butons {
+  padding-left: 24vw ;
   display: flex;
-  align-items: start;
-  justify-content: center;
-  gap: 4vh;
+  gap: 3vh;
 }
 
 #cursor {
@@ -354,4 +342,51 @@ label {
   position: relative;
   top: 15vh;
   margin-bottom: 55vh;
+}
+
+.rating {
+  color : black;
+}
+
+.reviews {
+  width: 50%;
+  position: relative;
+  left: 24vw;
+  margin-top: 4vw;
+}
+
+.showreview {
+  width: 70%;
+  display: flex;
+  margin-top: 2vw;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15vh;
+  gap: 4vh;
+  flex-wrap: wrap;
+  padding: 4vh 5vh;
+}
+
+.reviewbox {
+  width: 25vw;
+  height: 30vw;
+  height: fit-content;
+  border: 2px solid black;
+  font-family: "Roboto", sans-serif;
+  border-radius: 12px;
+  padding: 3vh 4vh;
+}
+
+.star span {
+  font-style: italic;
+}
+
+.reviewname {
+  text-transform: uppercase;
+}
+
+.reviewheading {
+  margin-top: 9vh;
+  position: relative;
+  margin-left: 19vw;
 }

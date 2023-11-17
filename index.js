@@ -9,18 +9,18 @@ const ejsengine = require("ejs-mate");
 const morgan = require("morgan");
 const WrapAsync = require("./error/WrapAsync.js");
 const ExpressError = require("./error/ExpressError.js");
-const validatejoi = require("./schema.js");
-const { func } = require("joi");
+const { Listschema , Reviewschema } = require("./schema.js");
+const Review = require('./models/Review.js');
 
 async function calldb() {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
-    console.log("You are successfully connected to mongodb");
+    mongoose.connect('mongodb://127.0.0.1:27017/wanderlust')
+    console.log('You connected to mongoose')
   } catch (error) {
-    console.log(error.message);
+    console.log(error)
   }
 }
-calldb();
+calldb()
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -30,12 +30,21 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsengine);
 
 function checkvalidation(req ,res, next) {
-    let joi = validatejoi.validate(req.body);
+    let joi = Listschema.validate(req.body);
     if(joi.error){ 
         throw new ExpressError(400 , joi.error)
     } else {
         next()
     }
+}
+
+function checkreview(req ,res, next) {
+  let joi = Reviewschema.validate(req.body);
+  if(joi.error){ 
+      throw new ExpressError(400 , joi.error)
+  } else {
+      next()
+  }
 }
 
 app.use(
@@ -56,7 +65,7 @@ app.get(
     let list = await Listing.find();
     res.render("render/index.ejs", { list });
   })
-);
+); 
 
 app.get("/list/new", (req, res) => {
   res.render("render/new.ejs");
@@ -72,15 +81,17 @@ app.post(
   })
 );
 
+//show result
 app.get(
   "/list/:id",
   WrapAsync(async (req, res, next) => {
     let { id } = req.params;
-    let list = await Listing.findById(id);
+    let list = await Listing.findById(id).populate('review');
     res.render("render/show.ejs", { list });
   })
 );
 
+//edit page only
 app.get(
   "/list/:id/edit",
   WrapAsync(async (req, res) => {
@@ -109,6 +120,31 @@ app.delete(
     res.redirect("/list");
   })
 );
+
+// reviewpost
+app.post('/list/:id/review' , checkreview
+ ,WrapAsync( async (req , res) => {
+  let {id} = req.params;
+   let listing = await Listing.findById(req.params.id)
+   let review = new Review(req.body.review)
+
+   listing.review.push(review)
+
+   await listing.save()
+   await review.save()
+
+   res.redirect(`/list/${id}`)
+}))
+ 
+// reviewdelete 
+app.delete('/list/:id/review/:reviewid', WrapAsync( async (req ,res) => {
+    let {id , reviewid} = req.params;
+    await Listing.findByIdAndUpdate(id , {$pull : {review : reviewid}})
+    
+    await Review.findByIdAndDelete(reviewid)
+    res.redirect(`/list/${id}`)
+
+}))
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, `Page not found`));
