@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const express = require("express");
+const app = express();
+const Review = require("../models/Review.js");
 
 const Schema = new mongoose.Schema({
   title: {
@@ -15,7 +18,7 @@ const Schema = new mongoose.Schema({
     set: (v) =>
       v === ""
         ? "https://media.istockphoto.com/id/185275043/photo/old-stone-house.jpg?s=2048x2048&w=is&k=20&c=8XtYRExld3vQIzHOBUWfdz62CgrN-_g2N0KcW1IH7w4="
-        : v
+        : v,
   },
   price: {
     type: Number,
@@ -24,14 +27,17 @@ const Schema = new mongoose.Schema({
     type: String,
   },
   country: String,
-  review : [
+  review: [
     {
-      type : mongoose.Schema.Types.ObjectId,
-      ref : 'Review'
-    }
-  ]
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
+});
+
+Schema.post("findOneAndDelete", async (data) => {
+    await Review.deleteMany({ _id : {$in : data.review}});
 });
 
 const Listing = mongoose.model("Listing", Schema);
-
 module.exports = Listing;

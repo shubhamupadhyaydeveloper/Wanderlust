@@ -2,18 +2,16 @@
   <div id="nav">
     <h1 class="magnet">Wanderlust.</h1>
     <div id="navtext">
-      <a href="/list" class="magnet">Home <span class="material-symbols-outlined">
-        home
-        </span></a>
-      <a href="#allbox" class="magnet">All List <span class="material-symbols-outlined">
-        expand_more
-        </span></a>
-      <a href="/list/new" class="magnet">
-        New
-        <span class="material-symbols-outlined">
-          add_business
-          </span>
-      </a>
+      <a href="/list" class="magnet">Home</a>
+      <a href="#allbox" class="magnet">All List</a>
+      <a href="/list/new" class="magnet">New</a>
+
+      <% if(curruser) {%>
+      <a href="/logout" class="magnet">Logout</a>
+      <% } %> <% if(!curruser) { %>
+      <a href="/signup" class="magnet">Signup</a>
+      <a href="/login" class="magnet">Login</a>
+      <% } %>
     </div>
   </div>
 </nav>

@@ -3,7 +3,7 @@
 
        
     <div class="showcontainer">
-        <h1><%= list.title %></h1>
+        <h4><b><%= list.title %></b></h4>
         <img src="<%= list.image %>" alt="image">
         <div class="showtext">
             <h3>Description :<%= list.description %></h3>
@@ -15,11 +15,11 @@
 
     <div id="show" class="d-flex justify-content-start butons mt-3">
         <form action="/list/<%= list._id %>/edit" method="get">
-           <button type="submit" class=" btn btn-danger">Edit</button>
+           <button type="submit" class=" btn btn-danger signupbtn">Edit</button>
        </form>
     
        <form action="/list/<%= list._id %>?_method=DELETE %>" method="post">
-           <button type="submit" class="btn btn-primary ">Delete list</button>
+           <button type="submit" class="btn btn-primary signupbtn">Delete list</button>
        </form>
     </div>
 
@@ -54,7 +54,7 @@
                   </div>
           </div>
 
-          <button class="btn btn-outline-primary">Submit</button>
+          <button class="btn btn-outline-primary signupbtn">Submit</button>
            
       </form>
     </div>

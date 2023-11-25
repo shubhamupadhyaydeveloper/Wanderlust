@@ -1,0 +1,36 @@
+<%- layout('layout/Boilerplate.ejs') %>
+
+<body>
+<div class="d-flex justify-content-center">
+    <h1 class="signupheading col-6 offset-3">Signup</h1>
+    <div class="signup">
+        <form action="/signup" method="post" class="needs-validation" novalidate>
+            <div>
+                <label for="username" class="form-label">Username</label><br>
+                <input type="text" id="username" placeholder="Tony stark" class="form-control" required name="username">
+                <div class="invalid-feedback">
+                    Please provide a Username.
+                  </div>
+            </div>
+            <div>
+                <label for="email" class="form-label">Email</label>
+                <input type="text" id="email" placeholder="tonystack@gmail.com" class="form-control" required name="email">
+                <div class="invalid-feedback">
+                    Please provide a Email.
+                  </div>
+            </div>
+            <div >
+                <label for="Password" class="form-label">Password</label>
+                <input type="password" id="Password" placeholder="choose strong Password" class="form-control" required name="password">
+                <div class="invalid-feedback">
+                    Please provide a Password.
+                  </div>
+            </div>
+    
+            <button class="btn btn-success signupbtn">Signup</button>
+        </form>
+    </div>
+</div>
+</body>
+
+<script src="/script/validation.js"></script>
