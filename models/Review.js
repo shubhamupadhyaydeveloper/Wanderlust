@@ -5,10 +5,10 @@ const reviewSchema = new mongoose.Schema({
         type : Number,
         default : 3
     } ,
-    name : {
-        type : String,
-        required : true
-    }  ,
+    author : {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : 'User'
+    } ,
     comment : {
         type : String,
         required : true

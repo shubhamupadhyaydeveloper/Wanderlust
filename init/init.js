@@ -14,8 +14,9 @@ calldb()
 async function startdata() {
     try {
         await   Listing.deleteMany({})
-         await  Listing.insertMany(initdata.data)
-            console.log('Yes all right here')
+       initdata.data = initdata.data.map((obj) => ({...obj , owner : '65604e471f38f167d625a1ad'}))
+        await  Listing.insertMany(initdata.data)
+        console.log('Yes all right here')
         
     } catch (error) {
         console.log(error.message)

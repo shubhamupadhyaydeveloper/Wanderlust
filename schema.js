@@ -15,7 +15,6 @@ module.exports.Listschema = joi.object({
 module.exports.Reviewschema = joi.object({
     review : joi.object({
         star : joi.number(),
-        name : joi.string().required(),
         comment : joi.string().required()
     }).required()
 })

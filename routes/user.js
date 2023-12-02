@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/User.js");
 const WrapAsync = require("../error/WrapAsync.js");
 const passport = require("passport");
+const pathlocate = require('../middleware/path.js')
 
 router.get("/signup", (req, res) => {
   res.render("render/signup.ejs");
@@ -43,6 +44,7 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login",
+ pathlocate,
  passport.authenticate("local" , {
    failureRedirect : '/login',
    failureFlash : true
@@ -50,7 +52,8 @@ router.post("/login",
 ,
  async (req, res) => {
    req.flash('success' , 'You are Loggedin 👍')
-   res.redirect('/list')
+   let path = res.locals.currurl || '/list'
+   res.redirect(`${path}`)
  });
 
 

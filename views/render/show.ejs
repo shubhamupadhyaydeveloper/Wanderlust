@@ -6,12 +6,15 @@
         <h4><b><%= list.title %></b></h4>
         <img src="<%= list.image %>" alt="image">
         <div class="showtext">
+            <h3>Owned by : <b><%= list.owner.username%></b></h3>
             <h3>Description :<%= list.description %></h3>
             <h3>price :<%= list.price.toLocaleString('en-IN') %></h3>
             <h3>location :<%= list.location %></h3>
             <h3>country :<%= list.country %></h3> 
         </div>
     </div>
+
+    <% if( curruser && curruser._id.equals(list.owner._id)) { %>
 
     <div id="show" class="d-flex justify-content-start butons mt-3">
         <form action="/list/<%= list._id %>/edit" method="get">
@@ -22,7 +25,9 @@
            <button type="submit" class="btn btn-primary signupbtn">Delete list</button>
        </form>
     </div>
+    <% } %>
 
+    <% if(curruser) { %>
     <div class="reviews">
         <h1>Write a Review</h1>
       <form action="/list/<%= list._id %>/review" method="post" novalidate class="needs-validation">
@@ -36,17 +41,6 @@
           </select>
 
           <div>
-              <label for="fname" class="form-label rating">Username</label>
-              <input type="text" name="review[name]"  id="fname" class="form-control" placeholder="Robert" required>
-              <div class="invalid-feedback">
-                Please provide a username.
-              </div>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-          </div>
-
-          <div>
             <label for="ftextarea" class="form-label rating">Comment</label>
             <textarea name="review[comment]" id="ftextarea" cols="30" rows="5" class="form-control" required></textarea >
                 <div class="invalid-feedback">
@@ -58,23 +52,29 @@
            
       </form>
     </div>
-    
-    <h1 class="reviewheading">All Reviews</h1>
-    <div class="showreview">
-        <% for (let value of list.review) {%>
-            <div class="reviewbox">
-                <h5>Name : <span class="reviewname"> <b><%= value.name %></b></span></h5>
-                <hr>
-                <h5>Comment : <%= value.comment %></h5>
-                <hr>
-                <h5 class="star"><span>Star</span>: <b><%= value.star %></b> </h5>
-                <form action="/list/<%= list._id %>/review/<%= value._id %>?_method=DELETE" method="post">
-                    <button class="btn btn-secondary">Delete</button>
-                </form>
-            </div>
+    <% } %>
 
+    <h1 class="reviewheading">All Reviews</h1>
+    <hr>
+    <div class="row row-cols-2 row-cols-lg-3">
+        <% for (let value of list.review) {%>          
+                    <div class="col-sm-6">
+                      <div class="card text-bg-secondary mb-3 ">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= value.author.username %></h5>
+                          <h5 class="card-title"><b><%= value.star %></b></h5>
+                          <p class="card-text">Comment : <%= value.comment %></p>
+                          <% if(curruser && curruser._id.equals(value.author._id)) {%>
+                          <form action="/list/<%= list._id %>/review/<%= value._id %>?_method=DELETE" method="post">
+                            <button class="btn btn-success">Delete</button>
+                        </form>
+                        <% } %>
+                        </div>
+                      </div>
+                    </div>          
         <% } %>
     </div>
-    
+
+
 </body>
 <script src="/script/validation.js"></script>

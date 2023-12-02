@@ -5,6 +5,7 @@ const ExpressError = require("../error/ExpressError.js");
 const Listing = require("../models/Listing.js");
 const { Listschema  } = require("../schema.js");
 const islogin = require('../middleware/islogged.js')
+const isuser = require('../middleware/isuser.js');
 
 function checkvalidation(req ,res, next) {
     let joi = Listschema.validate(req.body);
@@ -36,6 +37,7 @@ router.post(
   checkvalidation,
   WrapAsync(async (req, res, next) => {
     let newlist = new Listing(req.body.list);
+    newlist.owner = req.user._id;
     req.flash('success' , 'New Listing Register 😍')
     await newlist.save();
     res.redirect("/list");
@@ -44,10 +46,15 @@ router.post(
 
 //show result
 router.get(
-  "/:id",islogin,
+  "/:id",
   WrapAsync(async (req, res, next) => {
     let { id } = req.params;
-    let list = await Listing.findById(id).populate("review");
+    let list = await Listing.findById(id)
+    .populate({path : "review" ,
+  populate : {
+    path : "author"
+  }})
+    .populate("owner");
     if(!list){
       req.flash('error','Sorry! This list not exist 😥')
       res.redirect('/list')
@@ -58,13 +65,13 @@ router.get(
 
 //edit page only
 router.get(
-  "/:id/edit",islogin,
+  "/:id/edit",islogin, isuser,
   WrapAsync(async (req, res) => {
     let { id } = req.params;
     let list = await Listing.findById(id);
     if(!list){
       req.flash('error','Sorry! This list not exist 😥')
-      res.redirect('/list')
+      return res.redirect('/list')
     }
     res.render("render/edit.ejs", { list });
   })
@@ -72,7 +79,7 @@ router.get(
 
 //update
 router.put(
-  "/:id",islogin,
+  "/:id",islogin,isuser,
   WrapAsync(async (req, res) => {
     let { id } = req.params;
     let list = await Listing.findByIdAndUpdate(id, { ...req.body.list });
@@ -83,7 +90,7 @@ router.put(
 
 //delete
 router.delete(
-  "/:id",islogin,
+  "/:id",islogin,isuser,
   WrapAsync(async (req, res) => {
     let { id } = req.params;
     await Listing.findByIdAndDelete(id);

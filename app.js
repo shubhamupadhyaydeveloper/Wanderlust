@@ -52,11 +52,11 @@ app.use((req , res ,next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   res.locals.curruser = req.user;
-  console.log('Current User:', req.user);
+  // console.log('Current User:', req.user);
   next()
 }) 
    
-
+ 
 passport.use(new passportlocal(User.authenticate()))
 
 passport.serializeUser(User.serializeUser())
@@ -86,4 +86,4 @@ app.use((err, req, res, next) => {
   let { statusCode = 500, message = `Something went wrong` } = err;
   res.status(statusCode).render("render/error.ejs", { err });
 });
- 
+  
