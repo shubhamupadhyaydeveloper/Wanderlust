@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const express = require("express");
-const app = express();
 const Review = require("../models/Review.js");
 
 const Schema = new mongoose.Schema({
@@ -12,13 +10,9 @@ const Schema = new mongoose.Schema({
     type: String,
   },
   image: {
-    type: String,
-    default:
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG91c2UlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D",
-    set: (v) =>
-      v === ""
-        ? "https://media.istockphoto.com/id/185275043/photo/old-stone-house.jpg?s=2048x2048&w=is&k=20&c=8XtYRExld3vQIzHOBUWfdz62CgrN-_g2N0KcW1IH7w4="
-        : v,
+    url : String,
+    filename : String
+  
   },
   price: {
     type: Number,
@@ -27,6 +21,9 @@ const Schema = new mongoose.Schema({
     type: String,
   },
   country: String,
+  coordinates : {
+    type : [Number]
+  },
   review: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -36,6 +33,10 @@ const Schema = new mongoose.Schema({
   owner : {
     type : mongoose.Schema.Types.ObjectId,
     ref : 'User'
+  } ,
+  category : {
+    type : String,
+    enum : ['mountain' , 'forest' ,'hills' , 'swim' , 'villa' , 'warehouse' , 'city' , 'castle' , 'boat' , 'igloo' , 'trending']
   }
 });
 

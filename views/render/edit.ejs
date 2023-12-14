@@ -3,8 +3,9 @@
 
 
     <div class="containerform editform">
+      <h1>Edit Here</h1>
 
-        <form class="row g-3 needs-validation" novalidate method="post" action="/list/<%= list._id %>?_method=PUT" >
+        <form class="row g-3 needs-validation" novalidate method="post" action="/list/<%= list._id %>?_method=PUT" enctype="multipart/form-data">
           <div class="col-md-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" id="title" value="<%= list.title %>" required name="list[title]">
@@ -25,7 +26,7 @@
           <div class="col-md-2.2">
             <label for="image" class="form-label">Image</label>
             <div class="input-group has-validation">
-              <input type="text" class="form-control" id="image" aria-describedby="inputGroupPrepend" required name="list[image]" value="<%= list.image %>" required> 
+              <input type="file" class="form-control" id="image" aria-describedby="inputGroupPrepend"  name="list[image]"  > 
               <div class="invalid-feedback">
                 Please choose a valid link.
               </div>

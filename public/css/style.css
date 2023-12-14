@@ -9,11 +9,21 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Mukta", sans-serif;
+  position: relative;
 }
 
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
+}
+
+.bodycontainer {
+  overflow: hidden;
+}
+
+.searchitems {
+  position: relative;
+  margin-top: 17vh;
 }
 
 #nav {
@@ -34,9 +44,11 @@ html {
   background-color: white !important;
 }
 
-#nav h1 {
-  font-family: "Poppins", sans-serif;
+.navhead {
+  text-decoration: none;
+  color: black;
   font-size: 2vw;
+  font-weight: bold;
 }
 
 #navtext a {
@@ -44,6 +56,7 @@ html {
   text-decoration: none;
   color: black;
   gap: 5vh;
+  text-decoration: none;
 }
 
 #navtext {
@@ -76,60 +89,18 @@ html {
   gap: 1px;
 }
 
-#herotext {
-  margin: 10vh 4vh !important;
-  font-family: "bolde";
-  font-size: 8vw;
-  line-height: 13.4vw;
-}
-
-.heroinnertext {
-  color: black;
-  white-space: nowrap;
-  letter-spacing: -2.2vh;
-  padding-left: -2vh;
-}
-
-.change {
-  letter-spacing: -2vh;
-  text-transform: uppercase;
-}
-
-#page1 {
-  margin-left: 9vh;
-  font-family: "Mukta", sans-serif;
-  object-fit: cover;
-  margin-right: 1vw;
-  margin-top: 25vh;
-  color: black;
-}
-
-#herotext h1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 13vw !important;
-  line-height: 11.4vw !important;
-}
-
-#page1last {
-  padding: 5vh 21vh;
-  width: 70%;
-  font-family: "Roboto", sans-serif;
-}
-
 .box {
   display: flex;
   gap: 9vh;
   position: relative;
-  top: 15vh;
 }
 
 .card {
-  width: 25vw;
+  width: 22vw;
   display: flex;
   align-items: start;
   flex-direction: column;
-  gap: 4vh;
+  gap: vh;
 }
 
 .card:hover {
@@ -145,11 +116,9 @@ html {
 }
 
 #allbox {
-  font-family: "Roboto", sans-serif !important;
-  justify-content: space-evenly !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 9vh !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5vh;
 }
 
 #allbox a {
@@ -193,30 +162,6 @@ input[type="submit"]:hover {
   background-color: #45a049;
 }
 
-.containerform {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 10vh;
-  margin-top: 13vh;
-  border-radius: 5px;
-  padding: 25px;
-}
-
-.actualform {
-  background-color: rgb(15, 15, 15);
-  border-radius: 32px;
-  opacity: 0.9;
-  padding: 6vh 7vh;
-  width: 80vw !important;
-  height: 100vh;
-  line-height: 1px;
-}
-
-.containerform img {
-  width: 50%;
-}
-
 .footer {
   margin-top: 25vh;
   background-color: rgb(18, 18, 18);
@@ -230,38 +175,44 @@ footer {
 
 .footer-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
   flex-wrap: wrap;
+  flex-direction: column;
+  margin-left: 10vh;
+  align-items: center;
+}
+
+.icons > i {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.icons > i:hover {
+  opacity: 1;
+}
+
+.notfound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   margin-left: 10vh;
 }
 
-.footer-column {
-  flex: 1;
-  margin: 0 10px;
+.icons {
+  font-size: 2.3vw;
+  margin: 0vh 2vh;
 }
 
-.footer-column h3 {
-  color: #fff;
-  margin-bottom: 20px;
+#map {
+  height: 50vh;
+  width: 50vw;
 }
 
-.footer-column ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-column ul li {
-  margin-bottom: 10px;
-}
-
-.footer-column a {
-  color: #ccc;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.footer-column a:hover {
-  color: #fff;
+.mapcontainer {
+  position: relative;
+  left: 4.89vw;
 }
 
 .submitbutton {
@@ -298,7 +249,7 @@ footer {
 }
 
 .butons {
-  padding-left: 19.4vw ;
+  padding-left: 10vw;
   display: flex;
   gap: 3vh;
 }
@@ -324,7 +275,6 @@ label {
 .editform {
   position: relative;
   margin-top: 16vh;
-  background-color: #0e0e0e;
 }
 
 .error {
@@ -336,13 +286,13 @@ label {
 }
 
 .rating {
-  color : black;
+  color: black;
 }
 
 .reviews {
   width: 55%;
   position: relative;
-  left: 19.5vw;
+  left: 9.5vw;
   margin-top: 4vw;
 }
 
@@ -357,30 +307,31 @@ label {
 .reviewheading {
   margin-top: 9vh;
   position: relative;
-  margin-left: 19vw;
+  margin-left: 28vw;
 }
 
 .flash {
   position: absolute;
-  left: 40vw;
-  top: 12vh;
+  left: 28vw;
+  top: -8.1vh;
+  z-index: 99999;
   height: 9vh;
 }
 
-.signup {
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+.signupform {
   position: relative;
-  margin-top: 30vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 25vw;
-  height: 60vh;
+  top: 15vh;
+  margin-bottom: 16vw;
+}
+
+.loginform {
+  position: relative;
+  top: 15vh;
+  margin-bottom: 18vw;
 }
 
 .form-label {
-  color:  black;
+  color: black;
 }
 
 .signupheading {
@@ -390,46 +341,336 @@ label {
 
 /* CSS */
 .signupbtn {
-  align-self: center;
-  background-color: #fff;
-  background-image: none;
-  background-position: 0 90%;
-  background-repeat: repeat no-repeat;
-  background-size: 4px 3px;
-  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-  border-style: solid;
-  border-width: 2px;
-  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
   box-sizing: border-box;
-  color: #41403e;
+  color: #111;
   cursor: pointer;
-  display: inline-block;
-  font-family: Neucha, sans-serif;
-  font-size: 1rem;
-  line-height: 23px;
-  outline: none;
-  padding: .75rem;
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
   text-decoration: none;
-  transition: all 235ms ease-in-out;
-  border-bottom-left-radius: 15px 255px;
-  border-bottom-right-radius: 225px 15px;
-  border-top-left-radius: 255px 15px;
-  border-top-right-radius: 15px 225px;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 }
 
-.signupbtn:hover {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-  transform: translate3d(0, 2px, 0);
+.signupbtn:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform 0.2s ease-out;
+  z-index: -1;
 }
 
-.signupbtn:focus {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+.signupbtn:hover:after {
+  transform: translate(0, 0);
+}
+
+.signupbtn:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.signupbtn:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .signupbtn {
+    padding: 0 40px;
+  }
 }
 
 #Password {
   position: relative;
   margin-bottom: 2vh;
+}
+
+#newform {
+  position: relative;
+  margin-top: 15vh;
+  margin-bottom: 25vh;
+}
+
+.newimg {
+  position: absolute;
+  top: 0vh;
+  left: 54rem;
+}
+
+.newpos {
+  position: relative;
+  top: 5vh;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 39vh;
+  left: 38vw;
+  visibility: hidden;
+  z-index: 9998;
+}
+
+.newheading {
+  position: relative;
+  margin-bottom: -12vh;
+}
+
+.searchform {
+  display: flex;
+  position: relative;
+  left: 1.5vh;
+  bottom: 0.7vh;
+  gap: 1.5vh;
+}
+
+.categoryform {
+  display: flex;
+  gap: 1vh;
+  flex-direction: row;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.icontext > i {
+  font-size: 1.2vw;
+  color: black;
+  opacity: 0.7;
+}
+
+.icontext > i:hover {
+  opacity: 1;
+}
+
+.icontext {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.categoryitems {
+  display: flex;
+  gap: 0.5vh;
+}
+
+.category-icons > a {
+  text-decoration: none;
+  color: black;
+}
+
+.category-icons {
+  display: flex;
+  gap: 2.2vh;
+}
+
+.searchitems {
+  display: flex;
+  position: relative;
+  gap: 1vh;
+  margin-bottom: 2vh;
+}
+
+#reviewbox {
+  position: relative;
+  left: 5vw;
+}
+
+@media (max-width: 425px) {
+  
+  #navtext {
+    display: flex;
+    flex-direction: column;
+    top: 10vh;
+    right: 0.001vh;
+    position: absolute;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+  }
+
+  .nav-toggle {
+    display: block;
+    font-size: 4vw;
+  }
+
+  .navhead{
+    font-size: 5vh;
+  }
+
+}
+
+/* Large devices (laptops, desktops) */
+@media (max-width: 1024px) {
+  .searchbox {
+    position: relative;
+    right: 12vh;
+  }
+
+  .newheading {
+    position: relative;
+    margin-left: 19vh;
+  }
+
+  #newform {
+    position: absolute;
+    left: 13.5vw;
+  }
+
+  #nav {
+    height: 12vh;
+    padding: 2vh 5vh;
+    font-size: 2vw;
+  }
+
+  .navhead {
+    font-size: 2.5vw;
+  }
+
+  #navtext a {
+    font-size: 3.2vh;
+    text-decoration: none;
+    color: black;
+    position: relative;
+    left: 4vh;
+    text-decoration: none;
+  }
+
+  .newimg {
+    display: none;
+  }
+
+  #allbox {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    left: 0.9vh;
+  }
+
+  #map {
+    height: 60vh;
+    width: 70vw;
+  }
+
+  .icontext > i {
+    font-size: 2vw;
+    color: black;
+    opacity: 0.7;
+  }
+
+  .signupform {
+    position: relative;
+    bottom: 1.2vh;
+  }
+
+  .signupbtn {
+    padding: 0px 18px;
+  }
+
+  .footer {
+    position: absolute;
+    width: 100vw;
+  }
+  /* Additional adjustments as needed */
+}
+
+@media only screen and (max-width: 1440px) {
+  .searchitems {
+    position: relative;
+    left: 17vh;
+  }
+
+  .searchform {
+    position: relative;
+    bottom: 2vh;
+  }
+
+  #allbox {
+    position: relative;
+    left: 9vh;
+  }
+
+  .flash {
+    position: absolute;
+    left: 34vw;
+    top: -15vh;
+    height: 9vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .butons {
+    padding-left: 19.5vw;
+    display: flex;
+    gap: 3vh;
+  }
+
+  .reviews {
+    width: 55%;
+    position: relative;
+    left: 20vw;
+    margin-top: 4vw;
+  }
+
+  .newimg {
+    position: absolute;
+    top: 0vh;
+    left: 44rem;
+  }
+
+  .reviewheading {
+    margin-top: 9vh;
+    position: relative;
+    margin-left: 39vw;
+  }
+
+  #newform {
+    position: relative;
+    margin-top: 12vh;
+    margin-bottom: 19vh;
+  }
+
+  #map {
+    height: 55vh;
+    width: 55vw;
+  }
+
+  .showcontainer {
+    width: 100vh;
+    position: relative;
+    margin: auto;
+    margin-top: 15vh;
+  }
+
+  .mapcontainer {
+    position: relative;
+    left: 12.5vw;
+  }
+
+  .card {
+    width: 27vw;
+  }
 }

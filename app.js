@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != 'production') {
+  require('dotenv').config();
+}
+
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
@@ -70,16 +74,13 @@ app.listen(port, () => {
   console.log("Your app is listning on port 4000");
 });
 
-app.get("/", (req, res) => {
-  res.send("<h1>Hi and Welcome to my Website 👋</h1>");
-});
-
 app.use('/list' , listingrouter);
 app.use('/list/:id/review' , reviewrouter);
 app.use('/' , userrouter);
 
 app.all("*", (req, res, next) => {
-  next(new ExpressError(404, `Page not found`));
+    res.render('render/notfound.ejs')
+    next()
 });
 
 app.use((err, req, res, next) => {

@@ -1,80 +1,119 @@
 <%- layout('layout/Boilerplate.ejs') %>
 <body>
+  <div class="showcontainer">
+    <h4><b><%= list.title %></b></h4>
+    <img src="<%= list.image.url %>" alt="image" />
+    <div class="showtext">
+      <h3>
+        Owned by :
+        <b><%= list.owner.username%></b>
+      </h3>
+      <h3>Description :<%= list.description %></h3>
+      <h3>price :<%= list.price.toLocaleString('en-IN') %></h3>
+      <h3>location :<%= list.location %></h3>
+      <h3>country :<%= list.country %></h3>
+      <h3>category :<%= list.category %></h3>
+    </div>
+  </div>
 
-       
-    <div class="showcontainer">
-        <h4><b><%= list.title %></b></h4>
-        <img src="<%= list.image %>" alt="image">
-        <div class="showtext">
-            <h3>Owned by : <b><%= list.owner.username%></b></h3>
-            <h3>Description :<%= list.description %></h3>
-            <h3>price :<%= list.price.toLocaleString('en-IN') %></h3>
-            <h3>location :<%= list.location %></h3>
-            <h3>country :<%= list.country %></h3> 
+  <% if( curruser && curruser._id.equals(list.owner._id)) { %>
+
+  <div id="show" class="d-flex justify-content-start butons mt-3">
+    <form action="/list/<%= list._id %>/edit" method="get">
+      <button type="submit" class="btn btn-danger signupbtn">Edit</button>
+    </form>
+
+    <form action="/list/<%= list._id %>?_method=DELETE %>" method="post">
+      <button type="submit" class="btn btn-primary signupbtn">
+        Delete list
+      </button>
+    </form>
+  </div>
+  <% } %> <% if(curruser) { %>
+  <div class="reviews">
+    <h1>Write a Review</h1>
+    <form
+      action="/list/<%= list._id %>/review"
+      method="post"
+      novalidate
+      class="needs-validation"
+    >
+      <label for="star" class="rating">Rating</label>
+      <fieldset class="starability-slot">
+        <input
+          type="radio"
+          id="no-rate"
+          class="input-no-rate"
+          name="review[star]"
+          value="1"
+          checked
+          aria-label="No rating."
+        />
+        <input type="radio" id="first-rate1" name="review[star]" value="1" />
+        <label for="first-rate1" title="Terrible">1 star</label>
+        <input type="radio" id="first-rate2" name="review[star]" value="2" />
+        <label for="first-rate2" title="Not good">2 stars</label>
+        <input type="radio" id="first-rate3" name="review[star]" value="3" />
+        <label for="first-rate3" title="Average">3 stars</label>
+        <input type="radio" id="first-rate4" name="review[star]" value="4" />
+        <label for="first-rate4" title="Very good">4 stars</label>
+        <input type="radio" id="first-rate5" name="review[star]" value="5" />
+        <label for="first-rate5" title="Amazing">5 stars</label>
+      </fieldset>
+
+      <div>
+        <label for="ftextarea" class="form-label rating">Comment</label>
+        <textarea
+          name="review[comment]"
+          id="ftextarea"
+          cols="30"
+          rows="5"
+          class="form-control"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Please write about place.</div>
+      </div>
+
+      <button class="btn btn-outline-primary signupbtn">Submit</button>
+    </form>
+  </div>
+  <% } %>
+
+  <h1 class="reviewheading">All Reviews</h1>
+  <hr />
+  <div class="row row-cols-2 row-cols-lg-2 row-cols-md-2 row-cols-md-1" id="reviewbox">
+    <% for (let value of list.review) {%>
+    <div class="col-sm-9">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><b>@<%= value.author.username %></b></h5>
+          <p class="starability-result" data-rating="<%= value.star %>"></p>
+          <p class="card-text">
+            Comment :
+            <i><%= value.comment %></i>
+          </p>
+          <% if(curruser && curruser._id.equals(value.author._id)) {%>
+          <form
+            action="/list/<%= list._id %>/review/<%= value._id %>?_method=DELETE"
+            method="post"
+          >
+            <button class="btn btn-primary">Delete</button>
+          </form>
+          <% } %>
         </div>
-    </div>
-
-    <% if( curruser && curruser._id.equals(list.owner._id)) { %>
-
-    <div id="show" class="d-flex justify-content-start butons mt-3">
-        <form action="/list/<%= list._id %>/edit" method="get">
-           <button type="submit" class=" btn btn-danger signupbtn">Edit</button>
-       </form>
-    
-       <form action="/list/<%= list._id %>?_method=DELETE %>" method="post">
-           <button type="submit" class="btn btn-primary signupbtn">Delete list</button>
-       </form>
+      </div>
     </div>
     <% } %>
+  </div>
 
-    <% if(curruser) { %>
-    <div class="reviews">
-        <h1>Write a Review</h1>
-      <form action="/list/<%= list._id %>/review" method="post" novalidate class="needs-validation">
-        <label for="star" class="rating">Rating</label>
-        <select name="review[star]" id="star" type="number">
-            <option value="1" type="number">1</option>
-            <option value="2" type="number">2</option>
-            <option value="3" type="number">3</option>
-            <option value="4" type="number">4</option>
-            <option value="5" type="number">5</option>
-          </select>
-
-          <div>
-            <label for="ftextarea" class="form-label rating">Comment</label>
-            <textarea name="review[comment]" id="ftextarea" cols="30" rows="5" class="form-control" required></textarea >
-                <div class="invalid-feedback">
-                    Please write about place.
-                  </div>
-          </div>
-
-          <button class="btn btn-outline-primary signupbtn">Submit</button>
-           
-      </form>
-    </div>
-    <% } %>
-
-    <h1 class="reviewheading">All Reviews</h1>
-    <hr>
-    <div class="row row-cols-2 row-cols-lg-3">
-        <% for (let value of list.review) {%>          
-                    <div class="col-sm-6">
-                      <div class="card text-bg-secondary mb-3 ">
-                        <div class="card-body">
-                          <h5 class="card-title"><%= value.author.username %></h5>
-                          <h5 class="card-title"><b><%= value.star %></b></h5>
-                          <p class="card-text">Comment : <%= value.comment %></p>
-                          <% if(curruser && curruser._id.equals(value.author._id)) {%>
-                          <form action="/list/<%= list._id %>/review/<%= value._id %>?_method=DELETE" method="post">
-                            <button class="btn btn-success">Delete</button>
-                        </form>
-                        <% } %>
-                        </div>
-                      </div>
-                    </div>          
-        <% } %>
-    </div>
-
-
+  <div class="mapcontainer mt-5 ms-5">
+    <h1 class="ms-5">Where you’ll be</h1>
+    <h3 class="ms-5"><i><b><%= list.location %></b></i></h3>
+    <div id="map" class="ms-5"></div>
+  </div>
+  <script>
+    let getlocation = <%- JSON.stringify(list.coordinates) %>
+  </script>
+  <script src="/script/map.js"></script>
 </body>
 <script src="/script/validation.js"></script>

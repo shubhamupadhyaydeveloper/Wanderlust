@@ -1,31 +1,48 @@
 <%- layout('layout/Boilerplate.ejs') %>
 <body>
 
+    <%- include('../include/filters.ejs') %>
+
+    <% if(!isSearch) { %>
    
-    <!-- <form action="/list/new" method="get">
-        <button type="submit">New list</button>
-    </form> -->
-
-
-    <%- include('../include/hero.ejs') %>
-
-   
-  <div id="allbox">
+  <div  id="allbox">
     <% for (let data of list) {%>
         <a href="/list/<%= data._id %>">
         <div class="box "  data-aos="fade-up">
-            <div class="card">
-                <img src='<%= data.image %>' alt="img" class="child"/>
+            <div class="card mb-5 ">
+                <img src='<%= data.image.url %>' alt="img" class="child"/>
                 <div class="cardtext">
-                    <h3> <%= data.title %> </h3>
-                    <p> &#8377; <%= parseInt(data.price).toLocaleString('en-IN') %>  <b>per Night</b></p>
+                    <h3> &nbsp; <b><%= data.title %> </b> </h3>
+                    <h4>&nbsp; <%= data.location %> </h4>
+                    <p>&nbsp; &#8377; <%= parseInt(data.price).toLocaleString('en-IN') %>  <b>per Night</b></p>
                 </div>
             </div>
         </div>
     </a>
         <% } %>
   </div>
-
-    
+ <% } else { %>
+    <% if(results.length > 0) { %>
+    <h2>Search Results</h2>
+    <div  class="row row-cols-3 row-cols-lg-3d mb-3" id="allbox">
+        <% for (let data of results) {%>
+            <a href="/list/<%= data._id %>">
+            <div class="box "  data-aos="fade-up">
+                <div class="card mb-5 ">
+                    <img src='<%= data.image.url %>' alt="img" class="child"/>
+                    <div class="cardtext">
+                        <h3> &nbsp; <b><%= data.title %> </b> </h3>
+                        <h4>&nbsp; <%= data.location %> </h4>
+                        <p>&nbsp; &#8377; <%= parseInt(data.price).toLocaleString('en-IN') %>  <b>per Night</b></p>
+                    </div>
+                </div>
+            </div>
+        </a>
+            <% } %>
+      </div>
+    <% } else {%>
+        <h2 class="mt-4">No results found for <b>'<%= searchText %>'</b>.</h2>
+        <% } %>
+    <% } %>
     
 </body>

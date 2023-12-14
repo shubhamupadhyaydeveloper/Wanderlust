@@ -1,36 +1,51 @@
 <%- layout('layout/Boilerplate.ejs') %>
 
 <body>
-<div class="d-flex justify-content-center">
-    <h1 class="signupheading col-6 offset-3">Signup</h1>
-    <div class="signup">
-        <form action="/signup" method="post" class="needs-validation" novalidate>
-            <div>
-                <label for="username" class="form-label">Username</label><br>
-                <input type="text" id="username" placeholder="Tony stark" class="form-control" required name="username">
-                <div class="invalid-feedback">
-                    Please provide a Username.
-                  </div>
-            </div>
-            <div>
-                <label for="email" class="form-label">Email</label>
-                <input type="text" id="email" placeholder="tonystack@gmail.com" class="form-control" required name="email">
-                <div class="invalid-feedback">
-                    Please provide a Email.
-                  </div>
-            </div>
-            <div >
-                <label for="Password" class="form-label">Password</label>
-                <input type="password" id="Password" placeholder="choose strong Password" class="form-control" required name="password">
-                <div class="invalid-feedback">
-                    Please provide a Password.
-                  </div>
-            </div>
-    
-            <button class="btn btn-success signupbtn">Signup</button>
-        </form>
-    </div>
-</div>
+  <div class="mt-5 signupform col-lg-4 offset-4">
+    <h1>Signup page</h1>
+    <form action="/signup" method="post" class="needs-validation" novalidate>
+      <div class="mt-2">
+        <label for="username" class="form-label">Username</label>
+        <br />
+        <input
+          type="text"
+          id="username"
+          placeholder="Tony stark"
+          class="form-control col-md-4"
+          required
+          name="username"
+        />
+        <div class="invalid-feedback">Please provide a Username.</div>
+      </div>
+      <div class="mt-1">
+        <label for="username" class="form-label">Email</label>
+        <br />
+        <input
+          type="email"
+          id="username"
+          placeholder="tony@avenger.com"
+          class="form-control col-md-4"
+          required
+          name="email"
+        />
+        <div class="invalid-feedback">Please provide a Email.</div>
+      </div>
+      <div class="mt-2">
+        <label for="username" class="form-label">Password</label>
+        <br />
+        <input
+          type="password"
+          id="username"
+          placeholder="Strong password"
+          class="form-control col-md-4"
+          required
+          name="password"
+        />
+        <div class="invalid-feedback">Please provide a Username.</div>
+      </div>
+      <button class="signupbtn mb-5 mt-3">Submit</button>
+    </form>
+  </div>
 </body>
 
 <script src="/script/validation.js"></script>

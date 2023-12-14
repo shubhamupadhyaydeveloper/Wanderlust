@@ -1,88 +1,124 @@
 <%- layout('layout/Boilerplate.ejs') %>
 <body>
-    
-    <div class="containerform">
-        
-         <img src="/images/travel.jpg" height="700" alt="error">
+  <div class="newpos">
+  <img src="/images/travel.png" alt="error" class="newimg" />
 
-         <div class="actualform">
-            
-        <h2 class="formhead">Create a new listing</h2>
-       
-             <form action="/list" method="post" class="needs-validation" novalidate>
-                <div class="col-md-5">
-                    <label for="title" class="form-label"></label>
-                    <input type="text" name="list[title]" id="title" required class="form-control" placeholder="Title"> <br><br>
-                    <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                      <div class="invalid-feedback">
-                        Please provide a title.
-                      </div>
-                </div>
+  <div id="newform" class="newform-pos">
+    <h1 class="newheading">Create new Listing</h1>
+    <form
+      action="/list"
+      id="newform"
+      method="post"
+      class="needs-validation"
+      novalidate
+      enctype="multipart/form-data"
+    >
+      <div class="col-md-4">
+        <label for="validationCustom01" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationCustom01"
+          name="list[title]"
+          required
+          placeholder="Mark"
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
-                <div class="col-md-10">
-                    <label for="description" class="form-label"></label>
-                    <textarea name="list[description]" id="description" cols="30" rows="3" required class="form-control" placeholder="Description"></textarea> <br><br>
-                    <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                      <div class="invalid-feedback">
-                        Please provide a description.
-                      </div>
-                </div>
+      <div class="col-md-4">
+        <label for="validationCustom02" class="form-label">Discription</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="validationCustom02"
+          name="list[description]"
+          required
+          rows="4"
+          placeholder="write about the place"
+        ></textarea>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
-                <div class="col-md-10">
-                    <label for="image" class="form-label"></label>
-                    <input type="text" name="list[image]" id="image" placeholder="image" required class="form-control"> <br> <br>
-                    <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                      <div class="invalid-feedback">
-                        Please provide a valid link.
-                      </div>
-                </div>
-               
-                <div class="col-md-10">
-                    <label for="number" class="form-label"></label>
-                    <input type="number" name="list[price]" id="number" placeholder="price" required class="form-control"> <br> <br>
-                    <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                      <div class="invalid-feedback">
-                        Please provide a valid number.
-                      </div>
-                </div>
-               
-                <div class="col-md-10">
-                    <label for="location" class="form-label"></label>
-                    <input type="text" name="list[location]" id="location" placeholder="location" required class="form-control"> <br> <br>
-                    <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                      <div class="invalid-feedback">
-                        Please provide a valid location .
-                      </div>
-                </div>
+      <div class="col-md-4">
+        <label for="validationCustomUsername" class="form-label">Image</label>
+        <input
+          type="file"
+          class="form-control"
+          id="validationCustomUsername"
+          aria-describedby="inputGroupPrepend"
+          required
+          name="list[image]"
+        />
+        <div class="invalid-feedback">Please choose a image.</div>
+      </div>
+      <div class="col-md-3 mt-2">
+        <label for="validationCustom03" class="form-label">Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="validationCustom03"
+          required
+          name="list[price]"
+          part="eg : 999"
+        />
+        <div class="invalid-feedback">Please provide a valid price.</div>
+      </div>
 
-                <div class="col-md-10">
-                    <label for="country" class="form-label"></label>
-                    <input type="text" name="list[country]" id="country" placeholder="country" required class="form-control"> <br> <br>
-                    <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                      <div class="invalid-feedback">
-                        Please provide a valid country .
-                      </div>
-                </div>
+      <div class="row">
+        <div class="col-md-3">
+          <label for="validationCustom05" class="form-label">location</label>
+          <input
+            type="text"
+            class="form-control"
+            id="validationCustom05"
+            required
+            name="list[location]"
+            placeholder="san francisco"
+          />
+          <div class="invalid-feedback">Please provide a valid location.</div>
+        </div>
 
-             
-                 <button type="submit" class="submitbutton">Submit here</button>
-                </form
+        <div class="col-md-3">
+          <label for="validationCustom05" class="form-label">Country</label>
+          <input
+            type="text"
+            class="form-control"
+            id="validationCustom05"
+            required
+            name="list[country]"
+            placeholder="united states"
+          />
+          <div class="invalid-feedback">Please provide a valid country.</div>
+        </div>
+      </div>
 
-            </div>
 
+      <div class="col-md-3">
+        <label for="validationCustom04" class="form-label">category</label>
+        <select class="form-select" id="validationCustom04" name="list[category]" required>
+          <option selected value="mountain">mountain</option>
+          <option selected value="forest">forest</option>
+          <option selected value="hills">hills</option>
+          <option selected value="swim">swim</option>
+          <option selected value="villa">villa</option>
+          <option selected value="warehouse">warehouse</option>
+          <option selected value="city">city</option>
+          <option selected value="castle">castle</option>
+          <option selected value="boat">boat</option>
+          <option selected value="trending">trending</option>
+        </select>
+        <div class="invalid-feedback">
+          Please select a valid catory.
+        </div>
+      </div>
 
-    </div>
+      <div class="col-12">
+        <button class="signupbtn">Submit form</button>
+      </div>
+    </form>
+  </div>
+</div>
+  <script src="/script/new.js"></script>
 </body>
 <script src="/script/validation.js"></script>
